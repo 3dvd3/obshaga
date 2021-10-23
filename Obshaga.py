@@ -23,10 +23,18 @@ logging.basicConfig(level=logging.ERROR)
 
 @dp.message_handler(commands = "start")
 async def start(message: types.Message):
-    await bot.send_message(message.chat.id, text = "Привет, я бот для подготовки к ЕГЭ по обществознанию!\n\nПроверить свои знания можно командами /d и /p\nИли с помощью кнопок ниже.", reply_markup=kb.makup_begin)
+    await bot.send_message(message.chat.id, text = "Привет, я бот для подготовки к ЕГЭ по обществознанию!\n\nДля начала выберите блок задании", reply_markup=kb.makup_theme)
 
 
-@dp.message_handler(lambda message: message.text == "Определения")
+
+
+@dp.message_handler(lambda message: message.text == "Выбрать другой блок.")
+async def button_new_another(message: types.Message):
+    await bot.send_message(message.chat.id, text = "Выберите блок.\n\n*в дальнейшем пополню*", reply_markup=kb.makup_theme)
+
+
+
+@dp.message_handler(lambda message: message.text == "Определения по теме \"Человек и общество\"")
 async def button_defin(message: types.Message):
     global word
     global word_next
@@ -40,7 +48,16 @@ async def button_defin(message: types.Message):
     print(str(defin))
     await bot.send_message(message.chat.id, text = ze_waaardo + "это..." + "\n\nЧтобы дать ответ напишите /a *ответ*.")
 
-@dp.message_handler(lambda message: message.text == "Сложные вопросы")
+
+@dp.message_handler(lambda message: message.text == "Человек и общество")
+async def button_theme(message: types.Message):
+    await bot.send_message(
+        message.chat.id, text = "Вы выбрали тему: Человек и общество\n\nВыберите вопросы по этой теме.", 
+        reply_markup=kb.makup_begin
+        )
+
+
+@dp.message_handler(lambda message: message.text == "Сложные вопросы по теме \"Человек и общество\"")
 async def button_hard_quest(message: types.Message):
     global hard
     global hard_words_next
@@ -52,7 +69,9 @@ async def button_hard_quest(message: types.Message):
     jojo = hard_words[0]
     print("Перечислите " + str(jojo))
     print(hard)
-    await bot.send_message(message.chat.id, text = "Перечислите " + str(jojo) + ":" + "\n\nЧтобы дать ответ напишите /ap *ответ*.")
+    await bot.send_message(
+        message.chat.id, text = "Перечислите " + str(jojo) + ":" + "\n\nЧтобы дать ответ напишите /ap *ответ*."
+        )
 
 
 
