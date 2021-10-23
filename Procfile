@@ -1,1 +1,1 @@
-web: python3 Obshaga.py
+worker: python3 Obshaga.py

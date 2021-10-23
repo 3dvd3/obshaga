@@ -2,7 +2,6 @@ import logging
 import random
 from aiogram.types import message
 
-from wikipedia.wikipedia import languages
 import keyboards as kb
 
 from aiogram import Bot, types # импорт типов
