@@ -95,7 +95,7 @@ async def defin(message: types.Message):
 async def answer(message: types.Message):
     ans = message.text.split("/a")
     answer = ans[1]
-    print(answer)
+    print(answer.strip())
     a = fuzz.token_sort_ratio(answer, word_next)
     await message.reply("Ваше определение схоже с моим на " + str(a) + " %", reply_markup=kb.makup_return)
 
@@ -122,7 +122,7 @@ async def hard(message: types.Message):
 async def hard_answer(message: types.Message):
     ans = message.text.split("/ap")
     answer = ans[1]
-    print(answer)
+    print(answer.strip())
     a = fuzz.token_sort_ratio(answer, hard_words_next)
     await message.reply("Ваше определение схоже с моим на " + str(a) + " %", reply_markup=kb.makup_hard_return)
 
