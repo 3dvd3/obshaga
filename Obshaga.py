@@ -41,7 +41,8 @@ async def start(message: types.Message):
 
 @dp.message_handler(commands = "users")
 async def info(message: types.Message):
-    k = open("NameID.txt", "r", encoding="UTF-8")
+    file = r"C:\Users\Totosa\Desktop\obshaga\NameID.txt"
+    k = open(file, "r", encoding="UTF-8")
     contents = k.readlines()
     print(contents)
     c = "".join(contents)
