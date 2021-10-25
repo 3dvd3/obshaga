@@ -14,8 +14,6 @@ from fuzzywuzzy import process
 from Config import BOT_TOKEN
 from definitions import definitions
 from definitions import harder
-from gtts import gTTS
-
 
 bot = Bot(token = BOT_TOKEN)
 
