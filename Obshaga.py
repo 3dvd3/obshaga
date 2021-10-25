@@ -44,7 +44,6 @@ async def info(message: types.Message):
     file = r"C:\Users\Totosa\Desktop\obshaga\NameID.txt"
     k = open(file, "r", encoding="UTF-8")
     contents = k.readlines()
-    print(contents)
     c = "".join(contents)
     await message.reply("Все, кто писал боту:\n" + str(c))
 # default commands
