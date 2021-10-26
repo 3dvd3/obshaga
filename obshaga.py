@@ -203,6 +203,7 @@ async def pravo(message: types.Message):
 @dp.message_handler(lambda message: message.text.lower())
 async def suka(message: types.Message):
     r = message.text
+    print(r)
     if mode == 1:
         a = fuzz.token_sort_ratio(r, word_next)
         await message.reply("Ваше определение схоже с моим на " + str(a) + " %", reply_markup=kb.makup_return)
