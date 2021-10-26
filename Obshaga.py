@@ -1,11 +1,14 @@
 import logging
 import random
+from typing import Final
 from aiogram.types import message
+from aiogram.types.reply_keyboard import KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 import keyboards as kb
 
 from aiogram import Bot, types # импорт типов
-from aiogram.dispatcher import Dispatcher # это просто надо смирись 
+from aiogram.dispatcher import Dispatcher # это просто надо смирись
 from aiogram.utils import executor
 
 from fuzzywuzzy import fuzz
@@ -65,7 +68,7 @@ async def button_new_another(message: types.Message):
     c = open(file, "a+", encoding='utf-8')
     c.write("Username: " + str(name) + ";" + " ID: " + str(k) + "\n")
     c.close
-    uniqlines = set(open(file,'r', encoding='utf-8').readlines()) 
+    uniqlines = set(open(file,'r', encoding='utf-8').readlines())
     gotovo = open(file,'w', encoding='utf-8').writelines(set(uniqlines))
     await bot.send_message(message.chat.id, text = "Выберите блок.\n\n*в дальнейшем пополню*", reply_markup=kb.makup_theme)
 
@@ -73,7 +76,7 @@ async def button_new_another(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Человек и общество")
 async def button_theme(message: types.Message):
     await bot.send_message(
-    message.chat.id, text = "Вы выбрали тему: Человек и общество\n\nВыберите вопросы по этой теме.", 
+    message.chat.id, text = "Вы выбрали тему: Человек и общество\n\nВыберите вопросы по этой теме.",
     reply_markup=kb.makup_begin)
 
 
@@ -120,7 +123,7 @@ async def give(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Посмотреть правильный ответ✅")
 async def hard_give(message: types.Message):
     await bot.send_message(message.chat.id, text = str(hard.capitalize()), reply_markup=kb.makup_begin)
-# keyboards reply 
+# keyboards reply
 
 
 @dp.message_handler(lambda message: message.text == "Экономика")
@@ -149,7 +152,7 @@ async def harder_econom(message: types.Message):
     global true_hard
     global hardec
     global mode
-    mode = 4 
+    mode = 4
     hardec = random.choice(hards)
     hard_eco_next = hardec.split(":")
     true_hard = hard_eco_next[1]
@@ -157,7 +160,7 @@ async def harder_econom(message: types.Message):
     print(hard_econom)
     print(hardec.capitalize())
     await bot.send_message(message.chat.id, text = "Назовите " + str(hard_econom) + ":" + "\n\nЧтобы дать ответ просто напишите его в чат.")
-    
+
 
 @dp.message_handler(lambda message: message.text == "Посмотреть ответ✅")
 async def give(message: types.Message):
@@ -184,7 +187,7 @@ async def politic(message: types.Message):
 @dp.message_handler(lambda message: message.text == "Право")
 async def pravo(message: types.Message):
     await bot.send_message(message.chat.id, text = "Вы такое ещё не проходили.", reply_markup=kb.makup_block)
- 
+
 
 
 
@@ -192,19 +195,30 @@ async def pravo(message: types.Message):
 @dp.message_handler(lambda message: message.text.lower())
 async def suka(message: types.Message):
     r = message.text
-    print(r)
     if mode == 1:
         a = fuzz.token_sort_ratio(r, word_next)
         await message.reply("Ваше определение схоже с моим на " + str(a) + " %", reply_markup=kb.makup_return)
+        # if a <= 90:
+        #     user_id = message.from_user.id
+        #     k = open(str(user_id)+".txt", "a+", encoding="utf-8")
     elif mode == 2:
         a = fuzz.token_sort_ratio(r, hard_words_next)
         await message.reply("Ваше определение схоже с моим на " + str(a) + " %", reply_markup=kb.makup_hard_return)
+        # if a <= 90:
+        #     user_id = message.from_user.id
+        #     k = open(str(user_id)+".txt", "a+", encoding="utf-8")
     elif mode == 3:
         a = fuzz.token_sort_ratio(r, true_econom)
         await message.reply("Ваше определение схоже с моим на " + str(a) + " %", reply_markup=kb.makup_returns)
+        # if a <= 90:
+        #     user_id = message.from_user.id
+        #     k = open(str(user_id)+".txt", "a+", encoding="utf-8")
     elif mode == 4:
         a = fuzz.token_sort_ratio(r, true_hard)
         await message.reply("Ваше определение схоже с моим на " + str(a) + " %", reply_markup=kb.makup_returns_hard)
+        # if a <= 90:
+        #     user_id = message.from_user.id
+        #     k = open(str(user_id)+".txt", "a+", encoding="utf-8")
 
 
 

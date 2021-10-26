@@ -52,11 +52,13 @@ human_and_obshaga = KeyboardButton("Человек и общество")
 economic = KeyboardButton("Экономика")
 politic = KeyboardButton("Политика")
 pravo = KeyboardButton("Право")
+randomka = KeyboardButton("Рандом")
 makup_theme = ReplyKeyboardMarkup(
     resize_keyboard=True,
     one_time_keyboard=True,
 ).row(human_and_obshaga, politic
-).row(economic, pravo)
+).row(economic, pravo
+)
 
 
 
