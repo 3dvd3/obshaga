@@ -52,7 +52,7 @@ async def help(message: types.Message):
 
 @dp.message_handler(commands = "voices")
 async def ege(message: types.Message):
-    file = r"C:\Users\Totosa\Desktop\obshaga\ПК ЕГЭLAND - Мораль.mp3"
+    file = r"C:\Users\Totosa\Desktop\obshaga\int.mp3"
     c = open(file, "rb")
     await bot.send_voice(message.chat.id, c)
 
