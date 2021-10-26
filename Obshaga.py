@@ -46,7 +46,7 @@ async def start(message: types.Message):
 
 @dp.message_handler(commands = "help")
 async def help(message: types.Message):
-    await bot.send_message(message.chat.id, text = "Управление ботом осущетсвляется при помощи меню снизу⬇.\n\nОтветы на вопросы необходимо просто написать в чат.\nПриятного обучения.✨")
+    await bot.send_message(message.chat.id, text = "Управление ботом осущетсвляется при помощи меню снизу⬇.\n\nОтветы на вопросы необходимо просто написать в чат.\nПриятного обучения.✨", reply_markup=kb.makup_theme)
 
 
 
