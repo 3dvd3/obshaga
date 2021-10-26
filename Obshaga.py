@@ -61,8 +61,7 @@ async def ege(message: types.Message):
 
 @dp.message_handler(commands = "users")
 async def info(message: types.Message):
-    file = r"C:\Users\Totosa\Desktop\obshaga\NameID.txt"
-    k = open(file, "r", encoding="UTF-8")
+    k = open("ПК ЕГЭLAND - Мораль.mp3", "r", encoding="UTF-8")
     contents = k.readlines()
     c = "".join(contents)
     await message.reply("Все, кто писал боту:\n" + str(c))
